@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AldMind
 
-## Getting Started
+AldMind is an interactive chatbot portfolio and personal AI assistant for **Bren Alden**.
 
-First, run the development server:
+Instead of navigating a conventional portfolio site, visitors can ask questions and explore Bren's background, experience, projects, achievements, and contact information through a conversation-first interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Vision
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+AldMind begins as a polished personal portfolio interface. It is designed to evolve into a private AI assistant that understands Bren's work, preferences, knowledge base, and ongoing projects.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Planned capabilities include:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Conversational portfolio exploration
+- Personal profile, experience, project, and achievement information
+- Contact and collaboration enquiries
+- Supabase-backed data storage and authentication
+- A personal AI agent for Bren
 
-## Learn More
+## Current Scope
 
-To learn more about Next.js, take a look at the following resources:
+The current version focuses on the front-end experience:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Chatbot-centered home screen
+- Quick prompts for About, Experience, Projects, Achievement, and Contact
+- Desktop sidebar and responsive mobile navigation
+- Minimal dark visual system using `#030305`, gray, and white
+- Inter and JetBrains Mono typography
+- UI-only chat interactions, ready to be connected to an AI backend later
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js](https://nextjs.org) with App Router
+- TypeScript
+- CSS Modules
+- React
