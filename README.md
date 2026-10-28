@@ -23,7 +23,7 @@ The current version focuses on the front-end experience:
 - Chatbot-centered home screen
 - Quick prompts for About, Experience, Projects, Achievement, and Contact
 - Desktop sidebar and responsive mobile navigation
-- Minimal dark visual system using `#030305`, gray, and white
+- Minimal dark visual system using black , gray, and white
 - Inter and JetBrains Mono typography
 - UI-only chat interactions, ready to be connected to an AI backend later
 
