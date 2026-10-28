@@ -1,12 +1,13 @@
-import { Brand } from "../shared/brand";
-import { NavigationIcon } from "../shared/navigation-icon";
-import { portfolioLinks } from "../shared/portfolio-data";
-import { StatusIndicator } from "../shared/status-indicator";
-import styles from "../portfolio.module.css";
+import Link from "next/link";
+import { Brand } from "../brand";
+import { portfolioLinks } from "../data/navigation";
+import { StatusIndicator } from "../status-indicator";
+import styles from "../styles/shell.module.css";
+import { NavigationIcon } from "./navigation-icon";
 
-type SidebarProps = { onNewConversation: () => void };
+type SidebarProps = { onNewConversation: () => void; activeHref?: string };
 
-export function Sidebar({ onNewConversation }: SidebarProps) {
+export function Sidebar({ onNewConversation, activeHref = "/" }: SidebarProps) {
   return (
     <aside className={styles.sidebar} aria-label="Portfolio navigation">
       <Brand />
@@ -15,10 +16,10 @@ export function Sidebar({ onNewConversation }: SidebarProps) {
       </button>
       <p className={styles.navLabel}>Explore</p>
       <nav className={styles.sideNav}>
-        {portfolioLinks.map((link, index) => (
-          <a className={index === 0 ? styles.active : ""} href={link.href} key={link.label}>
+        {portfolioLinks.map((link) => (
+          <Link className={link.href === activeHref ? styles.active : ""} href={link.href} key={link.label}>
             <NavigationIcon name={link.icon} /> {link.label}
-          </a>
+          </Link>
         ))}
       </nav>
       <div className={styles.sidebarFooter}>

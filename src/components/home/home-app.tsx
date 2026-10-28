@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChatComposer } from "../chat/chat-composer";
-import { ChatMessage } from "../chat/chat-message";
-import { QuickPrompts } from "../chat/quick-prompts";
-import { Sidebar } from "../navigation/sidebar";
-import { StatusIndicator } from "../shared/status-indicator";
-import { Topbar } from "../navigation/topbar";
-import styles from "../portfolio.module.css";
+import { Sidebar } from "@/components/shared/navigation/sidebar";
+import { Topbar } from "@/components/shared/navigation/topbar";
+import { StatusIndicator } from "@/components/shared/status-indicator";
+import shellStyles from "@/components/shared/styles/shell.module.css";
+import { ChatComposer } from "./chat/chat-composer";
+import { ChatMessage } from "./chat/chat-message";
+import { QuickPrompts } from "./chat/quick-prompts";
+import styles from "./styles/home.module.css";
 
 type ChatEntry = {
   id: number;
@@ -18,7 +19,7 @@ type ChatEntry = {
 
 const demoReply = "Terima kasih untuk pertanyaannya. AldMind sedang dalam mode demo. Saat knowledge base terhubung, jawaban portfolio yang relevan akan tampil di sini.";
 
-export function PortfolioApp() {
+export function HomeApp() {
   const [messages, setMessages] = useState<ChatEntry[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -91,9 +92,9 @@ export function PortfolioApp() {
   const hasConversation = messages.length > 0;
 
   return (
-    <div className={styles.appShell}>
-      <Sidebar onNewConversation={() => showToast("Ready for a new conversation")} />
-      <main id="home" className={styles.main}>
+    <div className={shellStyles.appShell}>
+      <Sidebar activeHref="/" onNewConversation={() => showToast("Ready for a new conversation")} />
+      <main id="home" className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
         <section className={styles.chatStage} aria-label="AldMind chat">
           <div ref={conversationRef} className={styles.conversation} aria-live="polite">
@@ -101,7 +102,7 @@ export function PortfolioApp() {
               <div className={styles.intro}>
                 <div className={styles.eyebrow}><StatusIndicator /> PERSONAL AI PORTFOLIO <span>V.01</span></div>
                 <h1>Ask about <em>me,</em><br />my work, or ideas.</h1>
-                <p>I&apos;m <strong>Bren Alden</strong>, and this is AldMind, a conversational way to navigate my portfolio. Pick a direction or ask anything.</p>
+                <p>I&apos;m <strong>Bren Alden</strong>, and this is AldMind, a AI Chatbot way to navigate a creative portfolio and also my personal assistant. Pick a direction or ask anything.</p>
               </div>
             )}
             {messages.map((message) => (
@@ -116,7 +117,7 @@ export function PortfolioApp() {
           </div>
         </section>
       </main>
-      <output className={`${styles.toast} ${toastMessage ? styles.toastVisible : ""}`} aria-live="polite">{toastMessage}</output>
+      <output className={`${shellStyles.toast} ${toastMessage ? shellStyles.toastVisible : ""}`} aria-live="polite">{toastMessage}</output>
     </div>
   );
 }

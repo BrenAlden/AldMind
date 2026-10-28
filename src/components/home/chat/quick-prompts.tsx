@@ -1,6 +1,6 @@
-import { NavigationIcon } from "../shared/navigation-icon";
-import { quickPrompts } from "../shared/portfolio-data";
-import styles from "../portfolio.module.css";
+import { NavigationIcon } from "@/components/shared/navigation/navigation-icon";
+import { quickPrompts } from "../data/quick-prompts";
+import styles from "../styles/home.module.css";
 
 type QuickPromptsProps = { onSelect: (message: string) => void };
 

@@ -1,4 +1,4 @@
-import styles from "../portfolio.module.css";
+import styles from "./styles/shell.module.css";
 
 type StatusIndicatorProps = { label?: string };
 

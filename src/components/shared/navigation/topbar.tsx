@@ -1,5 +1,5 @@
-import { Brand } from "../shared/brand";
-import styles from "../portfolio.module.css";
+import { Brand } from "../brand";
+import styles from "../styles/shell.module.css";
 
 type TopbarProps = { onCopyLink: () => void };
 

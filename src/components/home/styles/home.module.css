@@ -1,0 +1,78 @@
+.chatStage { position: relative; z-index: 1; width: min(920px, 100%); min-height: 0; flex: 1; margin: 0 auto; padding: 0 34px 25px; display: flex; flex-direction: column; }
+.conversation { flex: 1; overflow-y: auto; padding: clamp(54px, 10vh, 100px) 0 26px; scrollbar-width: none; }
+.conversation::-webkit-scrollbar { display: none; }
+.intro, .chatMessage { max-width: 690px; margin-right: auto; margin-left: auto; }
+.composerArea { width: min(690px, 100%); align-self: center; }
+.eyebrow { display: flex; align-items: center; gap: 9px; color: #7a7a83; font: 500 9px var(--font-jetbrains-mono), monospace; letter-spacing: .12em; }
+.eyebrow > span:last-child { margin-left: auto; color: #3f3f47; }
+.intro h1 { margin: 21px 0 18px; color: #f2f2f0; font-size: clamp(38px, 4.2vw, 58px); font-weight: 500; line-height: .99; letter-spacing: -.062em; }
+.intro h1 em { color: #74747d; font-style: normal; }
+.intro p { max-width: 540px; margin: 0; color: #777780; font-size: 13px; line-height: 1.75; }
+.intro strong { color: #c7c7cb; font-weight: 500; }
+
+.quickPrompts { margin: 0 0 12px; display: flex; gap: 7px; overflow-x: auto; scrollbar-width: none; }
+.quickPrompts::-webkit-scrollbar { display: none; }
+.quickPrompts button { position: relative; min-width: max-content; height: 39px; padding: 0 12px 0 8px; display: flex; align-items: center; gap: 8px; overflow: hidden; border: 1px solid #24242a; border-radius: 9px; color: #b7b7bd; background: linear-gradient(145deg, rgba(18,18,22,.92), rgba(9,9,12,.92)); font-size: 10px; white-space: nowrap; box-shadow: inset 0 1px rgba(255,255,255,.02); transition: border-color .2s, background .2s, transform .2s; }
+.quickPrompts button::after { position: absolute; z-index: 0; top: -55%; width: 42%; height: 210%; content: ""; background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent); transform: translateX(-260%) skewX(-22deg); animation: promptWave 8s cubic-bezier(.2,.7,.3,1) infinite; pointer-events: none; }
+.quickPrompts button:nth-child(2)::after { animation-delay: .9s; }
+.quickPrompts button:nth-child(3)::after { animation-delay: 1.8s; }
+.quickPrompts button:nth-child(4)::after { animation-delay: 2.7s; }
+.quickPrompts button:nth-child(5)::after { animation-delay: 3.6s; }
+.quickPrompts button > * { position: relative; z-index: 1; }
+.quickPrompts button:hover { border-color: #484850; background: #15151a; transform: translateY(-1px); }
+.promptIcon { width: 22px; height: 22px; flex: 0 0 22px; display: grid; place-items: center; border: 1px solid #2e2e34; border-radius: 6px; color: #8e8e97; background: #0a0a0d; }
+.promptIcon svg { width: 11px; height: 11px; }
+.promptCopy { color: #d1d1d4; font-weight: 500; }
+
+@keyframes promptWave {
+  0%, 8% { transform: translateX(-260%) skewX(-22deg); }
+  20%, 100% { transform: translateX(360%) skewX(-22deg); }
+}
+
+.chatMessage { margin-top: 28px; padding-top: 23px; display: flex; gap: 13px; border-top: 1px solid #1b1b20; }
+.chatMessage p { margin: 0; padding-top: 1px; color: #65656e; font-size: 11px; line-height: 1.7; }
+.chatMessage strong { display: none; }
+.userMessage { margin-top: 17px; }
+.userMessage p { color: #aaaab0; }
+.userMessage strong { display: inline; color: #d2d2d4; font-weight: 500; }
+.messageAvatar { width: 26px; height: 26px; flex: 0 0 26px; display: grid; place-items: center; border: 1px solid #303037; border-radius: 7px; color: #a4a4aa; background: #0e0e12; font: 8px var(--font-jetbrains-mono), monospace; }
+.userAvatar { color: #151518; background: #dededb; }
+.typingIndicator { color: #81818a; font-style: italic; }
+
+.composerWrap { width: 100%; }
+.composer { min-height: 58px; padding: 8px 9px 8px 19px; display: flex; align-items: center; gap: 11px; border: 1px solid #34343b; border-radius: 14px; background: rgba(14,14,18,.94); box-shadow: 0 18px 70px rgba(0,0,0,.55), inset 0 1px rgba(255,255,255,.025); backdrop-filter: blur(18px); transition: border-color .2s, box-shadow .2s; }
+.composer:focus-within { border-color: #5b5b64; box-shadow: 0 18px 70px rgba(0,0,0,.6), 0 0 0 3px rgba(255,255,255,.025); }
+.composer input { min-width: 0; flex: 1; padding: 10px 0; border: 0; outline: 0; color: #e8e8e6; background: transparent; font-size: 12px; }
+.composer input::placeholder { color: #55555e; }
+.composerKey { color: #414149; font: 9px var(--font-jetbrains-mono), monospace; }
+.sendButton { width: 39px; height: 39px; flex: 0 0 39px; display: grid; place-items: center; border: 0; border-radius: 10px; color: #09090b; background: #e8e8e5; box-shadow: 0 2px 12px rgba(255,255,255,.08); transition: transform .2s, background .2s; }
+.sendButton:hover { background: #fff; transform: scale(1.03); }
+.sendButton:disabled { cursor: not-allowed; opacity: .5; transform: none; }
+.composer input:disabled { cursor: not-allowed; }
+.sendButton svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.composerHint { margin: 11px 0 0; color: #3f3f47; font: 7px var(--font-jetbrains-mono), monospace; letter-spacing: .11em; text-align: center; text-transform: uppercase; }
+.composerHint span { margin-right: 6px; color: #777780; font-size: 5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .quickPrompts button::after { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .chatStage { padding-right: 25px; padding-left: 25px; }
+}
+
+@media (max-width: 720px) {
+  .chatStage { width: 100vw; max-width: 100vw; min-width: 0; min-height: 0; padding: 0 17px 18px; }
+  .conversation { width: 100%; min-width: 0; padding-top: 50px; }
+  .intro, .chatMessage, .composerArea, .composerWrap { width: 100%; max-width: calc(100vw - 34px); }
+  .intro p { max-width: 100%; overflow-wrap: anywhere; font-size: 12px; }
+  .intro h1 { font-size: clamp(37px, 11vw, 52px); }
+  .quickPrompts { width: 100%; max-width: 100%; }
+  .quickPrompts button { min-width: max-content; min-height: 0; }
+  .chatMessage { margin-top: 23px; }
+  .composer { min-height: 54px; }
+}
+
+@media (max-width: 400px) {
+  .composerKey { display: none; }
+}

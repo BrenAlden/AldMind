@@ -1,4 +1,4 @@
-import styles from "../portfolio.module.css";
+import styles from "../styles/home.module.css";
 
 type ChatMessageProps = { author: "AldMind" | "You"; children: React.ReactNode };
 

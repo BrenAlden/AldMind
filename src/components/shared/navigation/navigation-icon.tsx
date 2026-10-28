@@ -1,4 +1,4 @@
-import type { NavigationIcon as NavigationIconName } from "./portfolio-data";
+import type { NavigationIcon as NavigationIconName } from "../data/navigation";
 
 type NavigationIconProps = { name: NavigationIconName };
 

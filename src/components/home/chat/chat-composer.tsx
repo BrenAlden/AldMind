@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import styles from "../portfolio.module.css";
+import styles from "../styles/home.module.css";
 
 type ChatComposerProps = { onSend: (message: string) => void; disabled?: boolean };
 

@@ -1,0 +1,2 @@
+export const portfolioLinks = [{ label: "Home", href: "/", icon: "home" }, { label: "About", href: "/about", icon: "user" }, { label: "Experience", href: "#experience", icon: "briefcase" }, { label: "Projects", href: "#projects", icon: "folder" }, { label: "Achievement", href: "#achievement", icon: "award" }, { label: "Contact", href: "#contact", icon: "mail" }] as const;
+export type NavigationIcon = (typeof portfolioLinks)[number]["icon"];
