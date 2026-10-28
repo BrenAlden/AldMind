@@ -8,11 +8,11 @@ export const portfolioLinks = [
 ] as const;
 
 export const quickPrompts = [
-  { number: "01", label: "About", detail: "Who I am", message: "Tell me about yourself", icon: "user" },
-  { number: "02", label: "Experience", detail: "Where I've worked", message: "Show me your experience", icon: "briefcase" },
-  { number: "03", label: "Projects", detail: "Things I've built", message: "What projects have you built?", icon: "folder" },
-  { number: "04", label: "Achievement", detail: "Milestones", message: "What are your achievements?", icon: "award" },
-  { number: "05", label: "Contact", detail: "Let's connect", message: "How can I contact you?", icon: "mail" },
+  { label: "About Bren Alden", message: "Tell me about Bren Alden", icon: "user" },
+  { label: "Bren's experience", message: "Show me Bren Alden's experience", icon: "briefcase" },
+  { label: "Bren's projects", message: "What projects has Bren Alden built?", icon: "folder" },
+  { label: "Bren's achievements", message: "What are Bren Alden's achievements?", icon: "award" },
+  { label: "Contact Bren", message: "How can I contact Bren Alden?", icon: "mail" },
 ] as const;
 
 export type NavigationIcon = (typeof portfolioLinks)[number]["icon"];

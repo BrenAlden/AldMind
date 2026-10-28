@@ -10,11 +10,7 @@ export function QuickPrompts({ onSelect }: QuickPromptsProps) {
       {quickPrompts.map((prompt) => (
         <button key={prompt.label} type="button" onClick={() => onSelect(prompt.message)}>
           <span className={styles.promptIcon}><NavigationIcon name={prompt.icon} /></span>
-          <span className={styles.promptCopy}>
-            <strong>{prompt.label}</strong>
-            <small>{prompt.detail}</small>
-          </span>
-          <span className={styles.promptNumber}>{prompt.number}</span>
+          <span className={styles.promptCopy}>{prompt.label}</span>
         </button>
       ))}
     </div>

@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import styles from "../portfolio.module.css";
 
-type ChatComposerProps = { onSend: (message: string) => void };
+type ChatComposerProps = { onSend: (message: string) => void; disabled?: boolean };
 
-export function ChatComposer({ onSend }: ChatComposerProps) {
+export function ChatComposer({ onSend, disabled = false }: ChatComposerProps) {
   const [message, setMessage] = useState("");
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -17,9 +17,9 @@ export function ChatComposer({ onSend }: ChatComposerProps) {
   return (
     <div className={styles.composerWrap}>
       <form className={styles.composer} onSubmit={submit}>
-        <input value={message} onChange={(event) => setMessage(event.target.value)} aria-label="Ask AldMind a question" placeholder="Message AldMind..." />
+        <input value={message} onChange={(event) => setMessage(event.target.value)} aria-label="Ask AldMind a question" placeholder="Message AldMind..." disabled={disabled} />
         <span className={styles.composerKey}>↵</span>
-        <button className={styles.sendButton} type="submit" aria-label="Send message">
+        <button className={styles.sendButton} type="submit" aria-label="Send message" disabled={disabled}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13" /><path d="m22 2-7 20-4-9-9-4z" /></svg>
         </button>
       </form>
