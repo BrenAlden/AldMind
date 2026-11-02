@@ -1,0 +1,267 @@
+.exp-page {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(58px, 10vh, 104px) 34px 90px;
+  scrollbar-width: none;
+}
+
+.exp-page::-webkit-scrollbar {
+  display: none;
+}
+
+.exp-content {
+  width: min(780px, 100%);
+  margin: 0 auto;
+}
+
+.exp-eyebrow {
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  color: #b4b4bc;
+  font: 500 9px var(--font-jetbrains-mono), monospace;
+  letter-spacing: .13em;
+}
+
+.exp-eyebrow::before {
+  width: 5px;
+  height: 5px;
+  margin-top: 2px;
+  flex: 0 0 5px;
+  border-radius: 50%;
+  content: "";
+  background: #e5e5e2;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .055), 0 0 12px rgba(255, 255, 255, .18);
+}
+
+.exp-eyebrow span {
+  color: #8a8a93;
+}
+
+.exp-content > h1 {
+  margin: 22px 0 10px;
+  color: #f2f2f0;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 500;
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+.exp-content > h1 em {
+  color: #a8a8b1;
+  font-style: normal;
+}
+
+/* ===== Section (Professional / Education / Organizational) ===== */
+.exp-section {
+  margin-top: 54px;
+}
+
+.exp-section-label {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 26px;
+  padding-top: 20px;
+  border-top: 1px solid #1c1c21;
+}
+
+.exp-section-label > span {
+  color: #9a9aa3;
+  font: 9px var(--font-jetbrains-mono), monospace;
+  letter-spacing: .08em;
+}
+
+.exp-section-label h2 {
+  margin: 0;
+  color: #ececee;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+
+/* ===== Timeline ===== */
+.exp-timeline {
+  --dot: 13px;          /* diameter bulatan */
+  --line-x: 6px;        /* posisi garis dari kiri (tengah bulatan) */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-item {
+  position: relative;
+  padding: 0 0 34px 34px;   /* ruang kiri untuk bulatan + garis */
+}
+
+.exp-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Garis vertikal yang menghubungkan bulatan ke experience berikutnya */
+.exp-item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: var(--line-x);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3a3a42, #23232a 70%, transparent);
+}
+
+.exp-item:last-child::before {
+  display: none;
+}
+
+/* Bulatan penanda */
+.exp-marker {
+  position: absolute;
+  top: 4px;
+  left: calc(var(--line-x) - var(--dot) / 2 + .5px);
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: #0b0b0e;
+  border: 2px solid #5a5a63;
+  box-shadow: 0 0 0 4px rgba(3, 3, 5, .9);
+  transition: border-color .4s ease, box-shadow .4s ease, transform .4s ease;
+}
+
+/* Saat item sudah terlihat (scroll-reveal), bulatannya "menyala" */
+.exp-item.is-visible .exp-marker {
+  border-color: #e5e5e2;
+  box-shadow: 0 0 0 4px rgba(3, 3, 5, .9), 0 0 12px rgba(255, 255, 255, .25);
+  transform: scale(1.06);
+}
+
+.exp-card {
+  padding: 16px 18px;
+  border: 1px solid #22222a;
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(18, 18, 22, .92), rgba(9, 9, 12, .92));
+  box-shadow: inset 0 1px rgba(255, 255, 255, .02);
+  transition: border-color .25s ease, transform .25s ease;
+}
+
+.exp-card:hover {
+  border-color: #3a3a44;
+  transform: translateY(-2px);
+}
+
+.exp-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.exp-role {
+  margin: 0;
+  color: #f0f0f2;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+
+.exp-period {
+  flex: 0 0 auto;
+  color: #9a9aa3;
+  font: 9px var(--font-jetbrains-mono), monospace;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+.exp-meta {
+  margin: 6px 0 0;
+  color: #b7b7bd;
+  font-size: 12px;
+}
+
+.exp-meta strong {
+  color: #dcdcdf;
+  font-weight: 500;
+}
+
+.exp-points {
+  margin: 13px 0 0;
+  padding: 0 0 0 16px;
+  display: grid;
+  gap: 7px;
+  color: #e4e4e8;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.exp-points li::marker {
+  color: #55555e;
+}
+
+.exp-tags {
+  margin: 15px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.exp-tags li {
+  padding: 5px 9px;
+  border: 1px solid #2a2a31;
+  border-radius: 7px;
+  color: #b4b4bb;
+  font: 9px var(--font-jetbrains-mono), monospace;
+  letter-spacing: .05em;
+}
+
+/* ===== Scroll reveal (blur -> tajam) ===== */
+.exp-reveal {
+  filter: blur(10px);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: filter .7s ease, opacity .7s ease, transform .7s ease;
+  will-change: filter, opacity, transform;
+}
+
+.exp-reveal.is-visible {
+  filter: blur(0);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .exp-page {
+    padding: 50px 17px 60px;
+  }
+
+  .exp-content {
+    width: 100%;
+    max-width: calc(100vw - 34px);
+  }
+
+  .exp-content > h1 {
+    font-size: clamp(40px, 12vw, 58px);
+    margin-bottom: 36px;
+  }
+
+  .exp-card-head {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-reveal,
+  .exp-reveal.is-visible {
+    filter: none;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .exp-marker {
+    transition: none;
+  }
+}
