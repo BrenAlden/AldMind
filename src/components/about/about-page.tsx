@@ -32,6 +32,34 @@ const keyHighlights = [
   ["LLM, RAG, & Agentic AI", "Learning"],
 ];
 
+const educationSection = {
+  number: "02",
+  heading: "Education",
+};
+
+const education = [
+  {
+    role: "Computer Science Student",
+    company: "Bina Nusantara University",
+    period: "September 2023 — Present",
+    location: "Tangerang, Banten",
+    points: [
+      "Streaming: AI",
+      "Published 2 IEEE Paper",
+      "Scholarship Mentor Awardee",
+    ],
+    tags: ["Machine Learning", "Deep Learning", "Natural Language Processing", "Computer Vision", "Speech Recognition", "Software Engineering", "Object Oriented Programming", "Database Technology"],
+  },
+  {
+    role: "Mathematic and Natural Science",
+    company: "SMA Maitreyawira",
+    period: "July 2020 — June 2023",
+    location: "Batam, Kepulauan Riau",
+    points: [],
+    tags: ["Mathematic", "Science", "Logical Thinking"],
+  },
+];
+
 const photo = {
   src: "/brenalden.png",
   alt: "Bren Alden",
@@ -39,7 +67,7 @@ const photo = {
 };
 
 const focusSection = {
-  number: "02",
+  number: "03",
   heading: "What guides my work",
 };
 
@@ -50,38 +78,66 @@ const focusAreas = [
 ];
 
 const techSection = {
-  number: "03",
+  number: "04",
   heading: "Tech stack",
 };
 
 const techGroups = [
   {
-    label: "Languages & Core",
+    label: "RPA",
+    items: [
+      { icon: "https://cdn.simpleicons.org/robotframework/5E50A9", name: "RPA Framework" },
+      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-excel.svg", name: "OpenPyXL" },
+      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/windows-11.svg", name: "Win32 COM" },
+      { icon: "selenium/selenium-original", name: "Selenium" },
+      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-power-automate.svg", name: "Power Automate" },
+      { icon: "n8n/n8n-original", name: "n8n" },
+    ],
+  },
+  {
+    label: "AI / Machine Learning",
     items: [
       { icon: "python/python-original", name: "Python" },
-      { icon: "https://upload.wikimedia.org/wikipedia/commons/1/18/C_Programming_Language.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original", name: "C" },
-      { icon: "java/java-original", name: "Java" },
-      { icon: "typescript/typescript-original", name: "TypeScript" },
-      { icon: "javascript/javascript-original", name: "JavaScript" },
-      { icon: "sql/sql-original", name: "SQL"}
-    ],
-  },
-  {
-    label: "AI & Data",
-    items: [
-      { icon: "pytorch/pytorch-original", name: "PyTorch" },
       { icon: "tensorflow/tensorflow-original", name: "TensorFlow" },
+      { icon: "keras/keras-original", name: "Keras" },
+      { icon: "pytorch/pytorch-original", name: "PyTorch" },
       { icon: "scikitlearn/scikitlearn-original", name: "scikit-learn" },
-      { icon: "pandas/pandas-original", name: "pandas" },
       { icon: "numpy/numpy-original", name: "NumPy" },
+      { icon: "pandas/pandas-original", name: "pandas" },
+      { icon: "matplotlib/matplotlib-original", name: "Matplotlib" },
+      { icon: "https://raw.githubusercontent.com/mlflow/mlflow/master/assets/icon.svg", name: "MLflow" },
+      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/openai.svg", name: "LLM" },
+      { icon: "https://cdn.simpleicons.org/langchain/5CC8C8", name: "RAG" },
+      { icon: "https://cdn.simpleicons.org/langgraph/B79CFF", name: "AI Agent" },
     ],
   },
   {
-    label: "Automation & Tools",
+    label: "Front End",
     items: [
-      { icon: "python/python-original", name: "Python RPA" },
-      { icon: "n8n/n8n-original", name: "n8n" },
-      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/microsoft-power-automate.svg", name: "Power Automate" },
+      { icon: "html5/html5-original", name: "HTML5" },
+      { icon: "css3/css3-original", name: "CSS3" },
+      { icon: "javascript/javascript-original", name: "JavaScript" },
+      { icon: "react/react-original", name: "React" },
+      { icon: "nextjs/nextjs-original", name: "Next.js", invert: true },
+      { icon: "vitejs/vitejs-original", name: "Vite" },
+    ],
+  },
+  {
+    label: "Back End",
+    items: [
+      { icon: "c/c-original", name: "C"},
+      { icon: "java/java-original", name: "Java" },
+      { icon: "supabase/supabase-original", name: "Supabase" },
+      { icon: "https://cdn.jsdelivr.net/gh/get-icon/geticon/icons/xampp.svg", name: "XAMPP" },
+    ],
+  },
+  {
+    label: "Tools",
+    items: [
+      { icon: "git/git-original", name: "Git" },
+      { icon: "github/github-original", name: "GitHub", invert: true },
+      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/vercel.svg", name: "Vercel", invert: true },
+      { icon: "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/notion.svg", name: "Notion", invert: true },
     ],
   },
 ];
@@ -93,7 +149,7 @@ function techIconUrl(icon: string) {
 }
 
 const nowSection = {
-  number: "04",
+  number: "05",
   heading: "Currently",
   text: "Replace this with what you are building, learning, studying, or looking for right now.",
 };
@@ -190,6 +246,41 @@ export function AboutPage() {
               </div>
             </section>
 
+            <section className="about-section about-reveal" aria-labelledby="about-edu-title">
+              <div className="about-section-label"><span>{educationSection.number}</span><h2 id="about-edu-title">{educationSection.heading}</h2></div>
+              <ol className="about-edu">
+                {education.map((item, index) => (
+                  <li className="about-edu-item" key={`${item.company}-${index}`}>
+                    <span className="about-edu-marker" aria-hidden="true" />
+                    <div className="about-edu-card">
+                      <div className="about-edu-head">
+                        <h3 className="about-edu-role">{item.company}</h3>
+                        <span className="about-edu-period">{item.period}</span>
+                      </div>
+                      <p className="about-edu-meta">
+                        <strong>{item.role}</strong>
+                        {item.location ? <span> · {item.location}</span> : null}
+                      </p>
+                      {item.points.length ? (
+                        <ul className="about-edu-points">
+                          {item.points.map((point) => (
+                            <li key={point}>{point}</li>
+                          ))}
+                        </ul>
+                      ) : null}
+                      {item.tags?.length ? (
+                        <ul className="about-edu-tags" aria-label="Focus areas">
+                          {item.tags.map((tag) => (
+                            <li key={tag}>{tag}</li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
             <section className="about-section about-reveal" aria-labelledby="about-focus-title">
               <div className="about-section-label"><span>{focusSection.number}</span><h2 id="about-focus-title">{focusSection.heading}</h2></div>
               <div className="about-focus-grid">
@@ -213,7 +304,7 @@ export function AboutPage() {
                       {group.items.map((tool) => (
                         <li className="about-tech-item" key={tool.name}>
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img className="about-tech-logo" src={techIconUrl(tool.icon)} alt={`${tool.name} logo`} width={22} height={22} loading="lazy" />
+                          <img className={`about-tech-logo${"invert" in tool && tool.invert ? " about-tech-logo--invert" : ""}`} src={techIconUrl(tool.icon)} alt={`${tool.name} logo`} width={22} height={22} loading="lazy" />
                           <span>{tool.name}</span>
                         </li>
                       ))}

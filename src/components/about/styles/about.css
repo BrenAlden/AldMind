@@ -364,9 +364,149 @@
   object-fit: contain;
 }
 
+/* Logo monokrom gelap (GitHub, Next.js, Vercel, Notion) agar terlihat di background gelap */
+.about-tech-logo--invert {
+  filter: invert(1) brightness(1.1);
+}
+
 @media (max-width: 720px) {
   .about-tech {
     margin-left: 0;
     gap: 22px;
+  }
+}
+
+/* ===== Education timeline ===== */
+.about-edu {
+  --dot: 13px;
+  --line-x: 6px;
+  margin: 20px 0 0 var(--about-indent);
+  padding: 0;
+  list-style: none;
+}
+
+.about-edu-item {
+  position: relative;
+  padding: 0 0 30px 34px;
+}
+
+.about-edu-item:last-child {
+  padding-bottom: 0;
+}
+
+.about-edu-item::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: var(--line-x);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3a3a42, #23232a 70%, transparent);
+}
+
+.about-edu-item:last-child::before {
+  display: none;
+}
+
+.about-edu-marker {
+  position: absolute;
+  top: 4px;
+  left: calc(var(--line-x) - var(--dot) / 2 + .5px);
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: #0b0b0e;
+  border: 2px solid #5a5a63;
+  box-shadow: 0 0 0 4px rgba(3, 3, 5, .9);
+}
+
+.about-edu-card {
+  padding: 16px 18px;
+  border: 1px solid #22222a;
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(18, 18, 22, .92), rgba(9, 9, 12, .92));
+  box-shadow: inset 0 1px rgba(255, 255, 255, .02);
+  transition: border-color .25s ease, transform .25s ease;
+}
+
+.about-edu-card:hover {
+  border-color: #3a3a44;
+  transform: translateY(-2px);
+}
+
+.about-edu-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.about-edu-role {
+  margin: 0;
+  color: #f0f0f2;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
+
+.about-edu-period {
+  flex: 0 0 auto;
+  color: #9a9aa3;
+  font: 9px var(--font-jetbrains-mono), monospace;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+.about-edu-meta {
+  margin: 6px 0 0;
+  color: #b7b7bd;
+  font-size: 12px;
+}
+
+.about-edu-meta strong {
+  color: #dcdcdf;
+  font-weight: 500;
+}
+
+.about-edu-points {
+  margin: 13px 0 0;
+  padding: 0 0 0 16px;
+  display: grid;
+  gap: 7px;
+  color: #e4e4e8;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.about-edu-points li::marker {
+  color: #55555e;
+}
+
+.about-edu-tags {
+  margin: 15px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.about-edu-tags li {
+  padding: 5px 9px;
+  border: 1px solid #2a2a31;
+  border-radius: 7px;
+  color: #b4b4bb;
+  font: 9px var(--font-jetbrains-mono), monospace;
+  letter-spacing: .05em;
+}
+
+@media (max-width: 720px) {
+  .about-edu {
+    margin-left: 0;
+  }
+
+  .about-edu-head {
+    flex-direction: column;
+    gap: 4px;
   }
 }

@@ -25,7 +25,7 @@ const professionalExperience = [
     role: "RPA Developer Intern",
     company: "PT Astra Daihatsu Motor",
     period: "March 2026 — Present",
-    location: "North Jakarta, Indonesia · On-site",
+    location: "North Jakarta, Jakarta · On-site",
     points: [
       "Developed and delivered 20+ end-to-end RPA projects using Python, with selected solutions integrating Microsoft Power Automate; conducted User Requirement gathering and User Acceptance Testing (UAT), reducing average manual work hours by 90%.",
       "Resolved major bugs in existing RPA solutions, improving processing stability, reducing execution time and manual work hours, and ensuring reliable laptop performance during automation runs.",
@@ -34,37 +34,11 @@ const professionalExperience = [
     ],
     tags: ["Python", "Power Automate", "Project Analysis", "Excel", "BRD" ,"UAT"],
   },
-];
-
-const education = [
-  {
-    role: "Computer Science Student (AI)",
-    company: "Bina Nusantara University",
-    period: "2022 — Present",
-    location: "Tangerang, Indonesia",
-    points: [
-      "Scholarship Mentor Awardee",
-      "Research Paper Author (Analyzing Deep Learning in Quick, Draw!: A Case Study on Hand-drawn Sketch Recognition)",
-    ],
-    tags: ["Machine Learning", "Deep Learning", "Natural Language Processing", "Computer Vision", "Speech Recognition", "Software Engineering", "Object Oriented Programming", "Database Technology"],
-  },
-  {
-    role: "Highschool Diploma (Mathematics and Science)",
-    company: "SMA Maitreyawira",
-    period: "2022 — Present",
-    location: "Batam, Indonesia",
-    points: [
-    ],
-    tags: ["Mathematic", "Logical Thinking"],
-  },
-];
-
-const organizationalExperience = [
-  {
+    {
     role: "Mentor Scholarship Awardee",
     company: "SASC Binus University",
     period: "September 2025 —  January 2026",
-    location: "Hybrid",
+    location: "Tangerang, Banten · Hybrid",
     points: [
       "Selected as a Student Mentor after meeting academic eligibility criteria, maintaining a GPA above 3.5 with no course grades below B-.",
       "Awarded a full scholarship covering 16 credits for one semester in recognition of contribution and performance in the mentoring program.",
@@ -73,14 +47,18 @@ const organizationalExperience = [
     ],
     tags: ["Mentoring", "Time Management"],
   },
+];
+
+const organizationalExperience = [
   {
-    role: "Staff",
+    role: "Project Manager of Malam Keakraban 2025",
     company: "Keluarga Mahasiswa Buddhis Dhammavaddhana",
-    period: "September 2025 —  January 2026",
-    location: "Onsite",
+    period: "December 2024 —  March 2025",
+    location: "Alam Sutera",
     points: [
-      "Project Manager of Malam Keakraban 2025",
-      ""
+      "Successfully organized Malam Keakraban 2025, attracting 150 participants across three KMBD regions: Alam Sutera, Kemanggisan, and Bekasi.",
+      "Led 27 committee members and 4 volunteers across multiple divisions throughout the planning and execution phases, ensuring event procedures and deliverables were completed as planned.",
+      "Managed event budgeting and negotiated with vendors and stakeholders for event requirements, achieving cost savings and a budget surplus."
     ],
     tags: [],
   },
@@ -88,8 +66,7 @@ const organizationalExperience = [
 
 const sections = [
   { number: "01", heading: "Professional Experience", items: professionalExperience },
-  { number: "02", heading: "Education", items: education },
-  { number: "03", heading: "Organizational Experience", items: organizationalExperience },
+  { number: "02", heading: "Organizational Experience", items: organizationalExperience },
 ];
 
 const toastMessages = {
