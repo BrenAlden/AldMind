@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Sidebar } from "@/components/shared/navigation/sidebar";
 import { Topbar } from "@/components/shared/navigation/topbar";
 import shellStyles from "@/components/shared/styles/shell.module.css";
@@ -32,6 +32,7 @@ export function ProjectsPage({ projects }: ProjectsPageProps) {
   const scrollRef = useRef<HTMLElement>(null);
   const [toastMessage, setToastMessage] = useState("");
   const [activeCategory, setActiveCategory] = useState(ALL);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const categories = useMemo(() => {
     const unique = new Set<string>();
@@ -58,6 +59,8 @@ export function ProjectsPage({ projects }: ProjectsPageProps) {
     }
   }
 
+  const closeModal = useCallback(() => setActiveProject(null), []);
+
   // Blur-to-clear reveal as cards enter the viewport. Re-runs when the filter
   // changes so freshly shown cards animate in too.
   useEffect(() => {
@@ -80,6 +83,24 @@ export function ProjectsPage({ projects }: ProjectsPageProps) {
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, [visibleProjects]);
+
+  // Lock page scroll and wire Escape-to-close while the modal is open.
+  useEffect(() => {
+    if (!activeProject) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeModal();
+    };
+    document.addEventListener("keydown", onKeyDown);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [activeProject, closeModal]);
 
   return (
     <div className={shellStyles.appShell}>
@@ -114,61 +135,34 @@ export function ProjectsPage({ projects }: ProjectsPageProps) {
             ) : (
               <ul className="proj-grid">
                 {visibleProjects.map((project) => (
-                  <li className="proj-card proj-reveal" key={project.id}>
-                    {project.imageUrl ? (
-                      <div className="proj-media">
-                        <Image
-                          src={project.imageUrl}
-                          alt={`${project.title} preview`}
-                          fill
-                          sizes="(max-width: 720px) calc(100vw - 34px), 380px"
-                          className="proj-media-img"
-                        />
-                      </div>
-                    ) : (
-                      <div className="proj-media proj-media--empty" aria-hidden="true">
-                        <span>{project.title.slice(0, 2).toUpperCase()}</span>
-                      </div>
-                    )}
+                  <li className="proj-reveal" key={project.id}>
+                    <button
+                      type="button"
+                      className="proj-card"
+                      onClick={() => setActiveProject(project)}
+                      aria-haspopup="dialog"
+                    >
+                      {project.imageUrl ? (
+                        <div className="proj-media">
+                          <Image
+                            src={project.imageUrl}
+                            alt={`${project.title} preview`}
+                            fill
+                            sizes="(max-width: 720px) 45vw, 200px"
+                            className="proj-media-img"
+                          />
+                        </div>
+                      ) : (
+                        <div className="proj-media proj-media--empty" aria-hidden="true">
+                          <span>{project.title.slice(0, 2).toUpperCase()}</span>
+                        </div>
+                      )}
 
-                    <div className="proj-body">
-                      <div className="proj-card-head">
+                      <div className="proj-body">
                         <h2 className="proj-name">{project.title}</h2>
                         {project.year ? <span className="proj-year">{project.year}</span> : null}
                       </div>
-
-                      {project.category || project.role ? (
-                        <p className="proj-meta">
-                          {project.category ? <span className="proj-cat">{project.category}</span> : null}
-                          {project.role ? <span className="proj-status">{project.role}</span> : null}
-                        </p>
-                      ) : null}
-
-                      {project.description ? <p className="proj-desc">{project.description}</p> : null}
-
-                      {project.tags.length ? (
-                        <ul className="proj-tags" aria-label="Skills and tools">
-                          {project.tags.map((tag) => (
-                            <li key={tag}>{tag}</li>
-                          ))}
-                        </ul>
-                      ) : null}
-
-                      {project.contributor ? (
-                        <p className="proj-contributor">
-                          <span>Contributors</span> {project.contributor}
-                        </p>
-                      ) : null}
-
-                      {project.link ? (
-                        <div className="proj-links">
-                          <a href={project.link} target="_blank" rel="noreferrer noopener" className="proj-link proj-link--primary">
-                            Visit project
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
-                          </a>
-                        </div>
-                      ) : null}
-                    </div>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -177,9 +171,100 @@ export function ProjectsPage({ projects }: ProjectsPageProps) {
         </section>
       </main>
 
+      {activeProject ? (
+        <ProjectModal project={activeProject} onClose={closeModal} />
+      ) : null}
+
       <output className={`${shellStyles.toast} ${toastMessage ? shellStyles.toastVisible : ""}`} aria-live="polite">
         {toastMessage}
       </output>
+    </div>
+  );
+}
+
+type ProjectModalProps = { project: Project; onClose: () => void };
+
+function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    closeRef.current?.focus();
+  }, []);
+
+  return (
+    <div className="proj-modal-overlay" role="presentation" onClick={onClose}>
+      <div
+        className="proj-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="proj-modal-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          ref={closeRef}
+          type="button"
+          className="proj-modal-close"
+          onClick={onClose}
+          aria-label="Close project details"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+
+        {project.imageUrl ? (
+          <div className="proj-modal-media">
+            <Image
+              src={project.imageUrl}
+              alt={`${project.title} preview`}
+              fill
+              sizes="(max-width: 720px) calc(100vw - 32px), 680px"
+              className="proj-modal-img"
+            />
+          </div>
+        ) : null}
+
+        <div className="proj-modal-body">
+          <div className="proj-modal-head">
+            <h2 id="proj-modal-title" className="proj-modal-title">{project.title}</h2>
+            {project.year ? <span className="proj-modal-year">{project.year}</span> : null}
+          </div>
+
+          {project.category || project.role ? (
+            <p className="proj-meta">
+              {project.category ? <span className="proj-cat">{project.category}</span> : null}
+              {project.role ? <span className="proj-status">{project.role}</span> : null}
+            </p>
+          ) : null}
+
+          {project.description ? <p className="proj-modal-desc">{project.description}</p> : null}
+
+          {project.tags.length ? (
+            <div className="proj-modal-field">
+              <p className="proj-modal-label">Skills &amp; tools</p>
+              <ul className="proj-tags" aria-label="Skills and tools">
+                {project.tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {project.contributor ? (
+            <div className="proj-modal-field">
+              <p className="proj-modal-label">Contributors</p>
+              <p className="proj-modal-value">{project.contributor}</p>
+            </div>
+          ) : null}
+
+          {project.link ? (
+            <div className="proj-links">
+              <a href={project.link} target="_blank" rel="noreferrer noopener" className="proj-link proj-link--primary">
+                Visit project
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+              </a>
+            </div>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

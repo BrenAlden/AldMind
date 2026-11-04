@@ -2,9 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Allow remote project images from any HTTPS host. Portfolio project
+    // covers may be hosted on Supabase Storage, GitHub, a CDN, etc.
     remotePatterns: [
-      // Supabase Storage public buckets (e.g. project cover images)
-      { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
+      { protocol: "https", hostname: "**" },
+      { protocol: "http", hostname: "**" },
     ],
   },
 };

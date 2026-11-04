@@ -1,6 +1,4 @@
 import { cache } from "react";
-import { getSupabase } from "./supabase";
-
 /**
  * Normalized project shape consumed by the UI.
  * Maps the Supabase `projects` table columns onto a clean shape.
@@ -97,20 +95,51 @@ const SAMPLE_PROJECTS: Project[] = [
  * Loads projects from Supabase, newest first (by created_at).
  * Cached per-request via React.cache so multiple components share one query.
  */
+/**
+ * Loads projects via Supabase's PostgREST endpoint using a plain `fetch`.
+ *
+ * We call REST directly (instead of supabase-js) so network errors surface
+ * with their real cause, and so we can apply an explicit timeout. This mirrors
+ * the exact request a browser/curl makes against the public anon API.
+ */
 export const getProjects = cache(async (): Promise<Project[]> => {
-  const supabase = getSupabase();
-  if (!supabase) return SAMPLE_PROJECTS;
+  const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  const { data, error } = await supabase
-    .from(TABLE)
-    .select("*")
-    .order("created_at", { ascending: false });
+  if (!rawUrl || !anonKey) return SAMPLE_PROJECTS;
 
-  if (error) {
-    console.error("[projects] Supabase query failed:", error.message);
+  const baseUrl = rawUrl.trim().replace(/\/rest\/v1\/?$/, "").replace(/\/+$/, "");
+  const endpoint = `${baseUrl}/rest/v1/${TABLE}?select=*&order=created_at.desc`;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10_000);
+
+  try {
+    const response = await fetch(endpoint, {
+      headers: {
+        apikey: anonKey,
+        Authorization: `Bearer ${anonKey}`,
+      },
+      signal: controller.signal,
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      const body = await response.text().catch(() => "");
+      console.error(`[projects] Supabase responded ${response.status}:`, body.slice(0, 300));
+      return SAMPLE_PROJECTS;
+    }
+
+    const rows = (await response.json()) as ProjectRow[];
+    if (!Array.isArray(rows) || rows.length === 0) return [];
+    return rows.map(normalize);
+  } catch (error) {
+    // Log the full cause chain — network failures from a proxy/TLS issue carry
+    // the real reason in error.cause, which `String(error)` hides.
+    const err = error as Error & { cause?: unknown };
+    console.error("[projects] Supabase fetch failed:", err.message, err.cause ?? "");
     return SAMPLE_PROJECTS;
+  } finally {
+    clearTimeout(timeout);
   }
-
-  if (!data || data.length === 0) return [];
-  return data.map(normalize);
 });

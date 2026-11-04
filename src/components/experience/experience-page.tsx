@@ -33,8 +33,11 @@ const professionalExperience = [
       "Served as the Project Progress PIC for the department, monitoring mandays, project requirements, and deliverables for reporting to the BR team; ensured timely responses and rapid issue resolution while maintaining stable project progress throughout the current Fiscal Year.",
     ],
     tags: ["Python", "Power Automate", "Project Analysis", "Excel", "BRD" ,"UAT"],
-  },
-    {
+  }
+];
+
+const organizationalExperience = [
+      {
     role: "Mentor Scholarship Awardee",
     company: "SASC Binus University",
     period: "September 2025 —  January 2026",
@@ -47,9 +50,6 @@ const professionalExperience = [
     ],
     tags: ["Mentoring", "Time Management"],
   },
-];
-
-const organizationalExperience = [
   {
     role: "Project Manager of Malam Keakraban 2025",
     company: "Keluarga Mahasiswa Buddhis Dhammavaddhana",
