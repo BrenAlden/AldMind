@@ -6,9 +6,6 @@ import { Sidebar } from "@/components/shared/navigation/sidebar";
 import { Topbar } from "@/components/shared/navigation/topbar";
 import shellStyles from "@/components/shared/styles/shell.module.css";
 
-/* =========================================================
-   KONTEN HALAMAN EXPERIENCE: ganti teks cukup di bagian ini
-   ========================================================= */
 
 const eyebrow = {
   label: "EXPERIENCE / 02",

@@ -80,7 +80,7 @@ const SAMPLE_PROJECTS: Project[] = [
     id: "sample-1",
     title: "Connect Supabase to see your projects",
     description:
-      "Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local, then restart the dev server. These sample cards will be replaced by your real `projects` table rows.",
+      "SAMPLE",
     category: "Setup",
     role: "",
     contributor: "",
