@@ -30,11 +30,15 @@
 }
 
 .chatMessage { margin-top: 28px; padding-top: 23px; display: flex; gap: 13px; border-top: 1px solid #1b1b20; }
-.chatMessage p { margin: 0; padding-top: 1px; color: #65656e; font-size: 11px; line-height: 1.7; }
+.messageContent { min-width: 0; }
+.chatMessage p { margin: 0; padding-top: 1px; color: #b7b7bd; font-size: 13px; line-height: 1.75; white-space: pre-line; }
 .chatMessage strong { display: none; }
 .userMessage { margin-top: 17px; }
-.userMessage p { color: #aaaab0; }
+.userMessage p { color: #d0d0d4; }
 .userMessage strong { display: inline; color: #d2d2d4; font-weight: 500; }
+.messageSources { margin-top: 7px; color: #777780; font-size: 10px; line-height: 1.5; }
+.messageSources a { color: #b0b0b8; text-decoration: underline; text-underline-offset: 2px; }
+.messageSources a:hover { color: #d1d1d4; }
 .messageAvatar { width: 26px; height: 26px; flex: 0 0 26px; display: grid; place-items: center; border: 1px solid #303037; border-radius: 7px; color: #a4a4aa; background: #0e0e12; font: 8px var(--font-jetbrains-mono), monospace; }
 .userAvatar { color: #151518; background: #dededb; }
 .typingIndicator { color: #81818a; font-style: italic; }

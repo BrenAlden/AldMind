@@ -23,7 +23,7 @@ export function ChatComposer({ onSend, disabled = false }: ChatComposerProps) {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13" /><path d="m22 2-7 20-4-9-9-4z" /></svg>
         </button>
       </form>
-      <p className={styles.composerHint}><span>●</span> Portfolio knowledge base · UI prototype</p>
+      <p className={styles.composerHint}><span>●</span> Jawaban bersumber dari data portfolio</p>
     </div>
   );
 }
