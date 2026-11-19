@@ -104,7 +104,7 @@ export function ProjectsPage({ projects }: ProjectsPageProps) {
 
   return (
     <div className={shellStyles.appShell}>
-      <Sidebar activeHref="/projects" onNewConversation={() => router.push("/")} />
+      <Sidebar activeHref="/projects" />
       <main className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
 

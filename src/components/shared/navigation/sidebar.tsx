@@ -5,15 +5,12 @@ import { StatusIndicator } from "../status-indicator";
 import styles from "../styles/shell.module.css";
 import { NavigationIcon } from "./navigation-icon";
 
-type SidebarProps = { onNewConversation: () => void; activeHref?: string };
+type SidebarProps = { activeHref?: string };
 
-export function Sidebar({ onNewConversation, activeHref = "/" }: SidebarProps) {
+export function Sidebar({ activeHref = "/" }: SidebarProps) {
   return (
     <aside className={styles.sidebar} aria-label="Portfolio navigation">
       <Brand />
-      <button className={styles.newConversation} type="button" onClick={onNewConversation}>
-        <span className={styles.plus}>+</span><span>New conversation</span><kbd>Ctrl K</kbd>
-      </button>
       <p className={styles.navLabel}>Explore</p>
       <nav className={styles.sideNav}>
         {portfolioLinks.map((link) => (

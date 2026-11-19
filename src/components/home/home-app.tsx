@@ -128,7 +128,7 @@ export function HomeApp() {
 
   return (
     <div className={shellStyles.appShell}>
-      <Sidebar activeHref="/" onNewConversation={() => showToast("Ready for a new conversation")} />
+      <Sidebar activeHref="/" />
       <main id="home" className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
         <section className={styles.chatStage} aria-label="AldMind chat">
