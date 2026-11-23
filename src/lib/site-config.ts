@@ -5,6 +5,6 @@ export const siteConfig = {
 
   socials: {
     github: "https://github.com/BrenAlden",
-    linkedin: "www.linkedin.com/in/brenalden",
+    linkedin: "https://www.linkedin.com/in/brenalden/",
   },
 } as const;
