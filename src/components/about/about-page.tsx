@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { Sidebar } from "@/components/shared/navigation/sidebar";
 import { Topbar } from "@/components/shared/navigation/topbar";
 import shellStyles from "@/components/shared/styles/shell.module.css";
-import PixelTransition from "@/components/about/library/PixelTransition";
 
 const eyebrow = {
   label: "ABOUT / 01",
@@ -203,7 +202,7 @@ export function AboutPage() {
 
   return (
     <div className={shellStyles.appShell}>
-      <Sidebar activeHref="/about" onNewConversation={() => router.push("/")} />
+      <Sidebar activeHref="/about" />
       <main className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
 
@@ -229,19 +228,7 @@ export function AboutPage() {
                 </div>
 
                 <div className="about-photo">
-                  <PixelTransition
-                    aspectRatio="auto"
-                    pattern="dither"
-                    gridSize={12}
-                    pixelColor="#d8d8dd"
-                    animationStepDuration={0.35}
-                    firstContent={
-                      <Image src={photo.src} alt={photo.alt} fill priority sizes={photo.sizes} className="about-photo-img--mono" />
-                    }
-                    secondContent={
-                      <Image src={photo.src} alt="" aria-hidden="true" fill sizes={photo.sizes} />
-                    }
-                  />
+                  <Image src={photo.src} alt={photo.alt} fill priority sizes={photo.sizes} />
                 </div>
               </div>
             </section>

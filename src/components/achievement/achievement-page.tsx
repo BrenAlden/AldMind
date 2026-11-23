@@ -83,7 +83,7 @@ export function AchievementPage({ achievements }: AchievementPageProps) {
 
   return (
     <div className={shellStyles.appShell}>
-      <Sidebar activeHref="/achievement" onNewConversation={() => router.push("/")} />
+      <Sidebar activeHref="/achievement" />
       <main className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
 

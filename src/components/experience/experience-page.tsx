@@ -114,7 +114,7 @@ export function ExperiencePage() {
 
   return (
     <div className={shellStyles.appShell}>
-      <Sidebar activeHref="/experience" onNewConversation={() => router.push("/")} />
+      <Sidebar activeHref="/experience" />
       <main className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
 

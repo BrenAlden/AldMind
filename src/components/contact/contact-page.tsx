@@ -75,7 +75,7 @@ export function ContactPage() {
 
   return (
     <div className={shellStyles.appShell}>
-      <Sidebar activeHref="/contact" onNewConversation={() => router.push("/")} />
+      <Sidebar activeHref="/contact" />
       <main className={shellStyles.main}>
         <Topbar onCopyLink={copyLink} />
 

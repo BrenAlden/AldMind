@@ -277,17 +277,6 @@
   }
 }
 
-.about-photo .pixelated-image-card {
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  border-radius: inherit;
-}
-
-.about-photo .about-photo-img--mono {
-  filter: grayscale(1) contrast(1.05) brightness(.92);
-}
-
 .about-reveal {
   filter: blur(10px);
   opacity: 0;
