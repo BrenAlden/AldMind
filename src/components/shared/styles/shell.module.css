@@ -1,5 +1,6 @@
 .appShell { min-height: 100svh; display: flex; overflow: hidden; background: var(--color-black); }
 .sidebar { position: relative; width: 272px; flex: 0 0 272px; min-height: 100svh; padding: 28px 18px 22px; display: flex; flex-direction: column; border-right: 1px solid #1d1d22; background: #050507; }
+.mobileNav { display: none; }
 .sidebar::after { content: ""; position: absolute; inset: 0 0 auto; height: 180px; pointer-events: none; background: radial-gradient(circle at 30% 0%, rgba(255,255,255,.045), transparent 67%); }
 .brand { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; padding: 0 8px; color: var(--color-text); text-decoration: none; }
 .brandMark { position: relative; width: 34px; height: 34px; display: grid; place-items: center; overflow: hidden; border: 1px solid #35353c; border-radius: 10px; background: linear-gradient(145deg, #17171b, #09090b); font: 500 12px var(--font-jetbrains-mono), monospace; }
@@ -37,5 +38,17 @@
 .toast { position: fixed; z-index: 10; right: 28px; bottom: 25px; padding: 11px 14px; border: 1px solid #34343a; border-radius: 8px; opacity: 0; transform: translateY(15px); color: #cbcbcf; background: #121216; font: 9px var(--font-jetbrains-mono), monospace; pointer-events: none; transition: .25s; }
 .toastVisible { opacity: 1; transform: translateY(0); }
 @media (max-width: 900px) { .sidebar { width: 228px; flex-basis: 228px; } }
-@media (max-width: 720px) { .appShell { height: 100svh; overflow: hidden; } .sidebar { display: none; } .main { width: 100%; max-width: 100vw; min-height: 0; height: 100svh; overflow: hidden; } .topbar { height: 64px; flex-basis: 64px; padding: 0 18px; } .compactBrand { display: flex; padding: 0; } .compactBrand .brandName small { display: none; } .topbarNote, .topbarStatus { display: none; } }
+@media (max-width: 720px) {
+  .appShell { height: 100svh; flex-direction: column; overflow: hidden; }
+  .sidebar { display: none; }
+  .main { order: 1; width: 100%; max-width: 100vw; min-height: 0; height: auto; flex: 1 1 auto; overflow: hidden; }
+  .mobileNav { order: 2; z-index: 3; flex: 0 0 calc(64px + env(safe-area-inset-bottom)); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); padding: 7px 8px calc(7px + env(safe-area-inset-bottom)); border-top: 1px solid #1d1d22; background: rgba(5,5,7,.96); }
+  .mobileNav a { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #929299; font-size: 9px; font-weight: 600; text-decoration: none; }
+  .mobileNav a:hover, .mobileNav a.mobileNavActive { color: #ffffff; }
+  .mobileNav svg { width: 17px; height: 17px; }
+  .topbar { height: 64px; flex-basis: 64px; padding: 0 18px; }
+  .compactBrand { display: flex; padding: 0; }
+  .compactBrand .brandName small { display: none; }
+  .topbarNote, .topbarStatus { display: none; }
+}
 @media (max-width: 400px) { .iconButton { display: none; } .profile { border-radius: 50%; } }

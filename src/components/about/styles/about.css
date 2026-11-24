@@ -151,7 +151,7 @@
   }
 
   .about-photo {
-    width: min(280px, 100%);
+    display: none;
   }
 
   .about-lead {
@@ -257,7 +257,7 @@
   }
 
   .about-photo {
-    width: min(280px, 100%);
+    display: none;
   }
 }
 
